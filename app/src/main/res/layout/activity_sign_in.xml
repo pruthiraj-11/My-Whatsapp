@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/greyBackground"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            tools:ignore="ImageContrastCheck"
+            tools:srcCompat="@drawable/whatsapp" />
+
+        <EditText
+            android:id="@+id/gmailfield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@drawable/background_cred"
+            android:ems="10"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColor="#0B0A0A"
+            android:textColorHint="#0B0A0A" />
+
+        <EditText
+            android:id="@+id/signinpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@drawable/background_cred"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="#040303"
+            android:textColorHint="#0E0B0B"
+            tools:ignore="VisualLintTextFieldSize" />
+
+        <TextView
+            android:id="@+id/newacc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="create a account"
+            android:textColor="#0B0808"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/signinbtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn"
+            android:padding="15dp"
+            android:text="sign in"
+            android:textColor="#E6DCDC"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/gin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="#D3C4C4"
+                android:drawableLeft="@drawable/gicon"
+                android:padding="15dp"
+                android:text="google"
+                android:textColor="#0C0B0B"
+                android:textStyle="bold"
+                app:cornerRadius="5dp"
+                tools:ignore="VisualLintButtonSize" />
+
+            <Button
+                android:id="@+id/fbin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/fb_color"
+                android:drawableLeft="@drawable/fb"
+                android:padding="15dp"
+                android:text="facebook"
+                android:textStyle="bold"
+                app:cornerRadius="5dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#040303" />
+    </LinearLayout>
+
+
+</LinearLayout>
