@@ -34,7 +34,6 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
-
     ActivitySettingsBinding binding;
     private static final int CAMPIC_ID =674;
     private static final int GALLERYPIC_ID=74;

@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -56,7 +57,10 @@ public class PhoneNumberAuthActivity extends AppCompatActivity {
         binding=ActivityPhoneNumberAuthBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        Objects.requireNonNull(getSupportActionBar()).hide();
+        AnimationDrawable animationDrawable = (AnimationDrawable)binding.phonelayout.getBackground();
+        animationDrawable.setEnterFadeDuration(1500);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
 
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);

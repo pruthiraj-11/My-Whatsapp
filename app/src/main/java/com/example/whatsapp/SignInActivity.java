@@ -2,6 +2,7 @@ package com.example.whatsapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -37,6 +38,12 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
         Objects.requireNonNull(getSupportActionBar()).hide();
+
+        AnimationDrawable animationDrawable = (AnimationDrawable)binding.signinlayout.getBackground();
+        animationDrawable.setEnterFadeDuration(1500);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
+
         auth=FirebaseAuth.getInstance();
         dialog=new ProgressDialog(SignInActivity.this);
         dialog.setTitle("Login");
