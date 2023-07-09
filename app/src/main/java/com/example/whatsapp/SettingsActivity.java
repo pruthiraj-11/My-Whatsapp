@@ -74,7 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
                String username=binding.etUserName.getText().toString();
 
                HashMap<String,Object> hashMap=new HashMap<>();
-               hashMap.put("userName",username);
+               hashMap.put("username",username);
                hashMap.put("status",status);
                database.getReference().child("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).updateChildren(hashMap);
                Toast.makeText(getApplicationContext(), "Profile updated", Toast.LENGTH_SHORT).show();
@@ -93,11 +93,8 @@ public class SettingsActivity extends AppCompatActivity {
                                 binding.etAbout.setText(users.getStatus());
                                 binding.etUserName.setText(users.getUsername());
                             }
-
                             @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
+                            public void onCancelled(@NonNull DatabaseError error) {}
                         });
 
         binding.plus.setOnClickListener(new View.OnClickListener() {

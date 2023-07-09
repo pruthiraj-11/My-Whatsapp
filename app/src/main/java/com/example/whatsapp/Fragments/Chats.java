@@ -44,11 +44,8 @@ public class Chats extends Fragment {
                 }
                 userAdapter.notifyDataSetChanged();
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
         return binding.getRoot();
     }

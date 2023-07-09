@@ -30,8 +30,8 @@ public class UserChats extends AppCompatActivity {
         binding = ActivityUserChatsBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
-
         Objects.requireNonNull(getSupportActionBar()).hide();
+
         database = FirebaseDatabase.getInstance();
         auth=FirebaseAuth.getInstance();
         final String senderId = auth.getUid();
@@ -40,14 +40,10 @@ public class UserChats extends AppCompatActivity {
         String profilPic=getIntent().getStringExtra("profilePic");
         binding.userName.setText(userName);
         Picasso.get().load(profilPic).placeholder(R.mipmap.ic_launcher_round).into(binding.profilePhoto);
-        binding.backarrow.setOnClickListener(v -> {
-            Intent intent=new Intent(UserChats.this,MainActivity.class);
-            startActivity(intent);
-        });
+        binding.backarrow.setOnClickListener(v -> startActivity(new Intent(UserChats.this,MainActivity.class)));
         final ArrayList<MessageModel> messagesModels=new ArrayList<>();
         final ChatAdapter chatAdapter= new ChatAdapter(messagesModels,this,receiveId);
         binding.chatrecyclerview.setAdapter(chatAdapter);
-
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         binding.chatrecyclerview.setLayoutManager(linearLayoutManager);
 

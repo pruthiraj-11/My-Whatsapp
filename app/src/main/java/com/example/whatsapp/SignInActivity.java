@@ -83,10 +83,6 @@ public class SignInActivity extends AppCompatActivity {
             Intent intent=new Intent(SignInActivity.this,SignUpActivity.class);
             startActivity(intent);
         });
-        //if(auth.getCurrentUser()!=null){
-        //     Intent intent=new Intent(SignInActivity.this,MainActivity.class);
-        //     startActivity(intent);
-        // }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -42,7 +42,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         Users users=list.get(position);
         Picasso.get().load(users.getProfilepic()).placeholder(R.mipmap.ic_launcher_round).into(holder.image);
         holder.username.setText(users.getUsername());
-        FirebaseDatabase.getInstance().getReference().child("Chats").child(FirebaseAuth.getInstance().toString()+users.getUserId())
+        FirebaseDatabase.getInstance().getReference().child("Chats").child(FirebaseAuth.getInstance().getCurrentUser().getUid()+users.getUserId())
                         .orderByChild("timestamp").limitToLast(1)
                         .addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -54,27 +54,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                                 }
                             }
                             @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
+                            public void onCancelled(@NonNull DatabaseError error) {}
                         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context, UserChats.class);
-                intent.putExtra("userId",users.getUserId());
-                intent.putExtra("profilePic",users.getProfilepic());
-                intent.putExtra("username",users.getUsername());
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent=new Intent(context, UserChats.class);
+            intent.putExtra("userId",users.getUserId());
+            intent.putExtra("profilePic",users.getProfilepic());
+            intent.putExtra("username",users.getUsername());
+            context.startActivity(intent);
         });
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
-
     public static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
         TextView lastmessage,username;
@@ -83,7 +76,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             image=itemView.findViewById(R.id.profile_photo);
             lastmessage=itemView.findViewById(R.id.lastmessage);
             username=itemView.findViewById(R.id.username);
-
         }
     }
 }

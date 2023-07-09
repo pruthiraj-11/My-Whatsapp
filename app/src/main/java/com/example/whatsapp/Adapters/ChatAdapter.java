@@ -2,7 +2,6 @@ package com.example.whatsapp.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ public class ChatAdapter extends RecyclerView.Adapter {
     ArrayList<MessageModel> messagesModels=new ArrayList<MessageModel>();
     Context context;
     String recId;
-
     int SENDER_VIEW_TYPE=1;
     int RECEIVER_VIEW_TYPE=2;
 
@@ -47,7 +45,6 @@ public class ChatAdapter extends RecyclerView.Adapter {
             view = LayoutInflater.from(context).inflate(R.layout.sample_receiver, parent, false);
         }
         return new SenderViewHolder(view);
-
     }
 
     @Override
@@ -63,32 +60,19 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
         MessageModel messagesModel=messagesModels.get(position);
-
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                new AlertDialog.Builder(context)
-                        .setTitle("Delete")
-                        .setMessage("Are you sure want to delete?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                FirebaseDatabase database=FirebaseDatabase.getInstance();
-                                String sender=FirebaseAuth.getInstance().getUid()+recId;
-                                database.getReference().child("Chats").child(sender)
-                                        .child(messagesModel.getMessageId())
-                                        .setValue(null);
-                            }
-                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).show();
-                return false;
-            }
+        holder.itemView.setOnLongClickListener(v -> {
+            new AlertDialog.Builder(context)
+                    .setTitle("Delete")
+                    .setMessage("Are you sure want to delete?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        FirebaseDatabase database=FirebaseDatabase.getInstance();
+                        String sender=FirebaseAuth.getInstance().getUid()+recId;
+                        database.getReference().child("Chats").child(sender)
+                                .child(messagesModel.getMessageId())
+                                .setValue(null);
+                    }).setNegativeButton("No", (dialog, which) -> dialog.dismiss()).show();
+            return false;
         });
 
         if(holder.getClass()==SenderViewHolder.class){
@@ -96,9 +80,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
         }
         else{
             ((ReceiverViewHolder) holder).receiverMsg.setText(messagesModel.getMessage());
-
         }
-
     }
 
     @Override
@@ -106,11 +88,8 @@ public class ChatAdapter extends RecyclerView.Adapter {
         return messagesModels.size();
     }
 
-    @SuppressWarnings("CanBeFinal")
-    public class ReceiverViewHolder extends RecyclerView.ViewHolder{
-
+    public static class ReceiverViewHolder extends RecyclerView.ViewHolder{
         TextView receiverMsg, receiverTime;
-
         public ReceiverViewHolder(@NonNull View itemView) {
             super(itemView);
             receiverMsg = itemView.findViewById(R.id.receiverText);
@@ -119,15 +98,12 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
     }
     @SuppressWarnings("CanBeFinal")
-    public class SenderViewHolder extends RecyclerView.ViewHolder{
-
+    public static class SenderViewHolder extends RecyclerView.ViewHolder{
         TextView senderMsg, senderTime;
-
         public SenderViewHolder(@NonNull View itemView) {
             super(itemView);
             senderMsg= itemView.findViewById(R.id.senderText);
             senderTime=itemView.findViewById(R.id.senderTime);
         }
-
     }
 }
