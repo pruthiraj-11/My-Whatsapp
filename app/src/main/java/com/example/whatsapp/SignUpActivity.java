@@ -46,21 +46,17 @@ public class SignUpActivity extends AppCompatActivity {
                         dialog.dismiss();
                         if (task.isSuccessful()) {
                             Users user=new Users(binding.uname.getText().toString(),email,pass);
-                            String id=task.getResult().getUser().getUid();
+                            String id= Objects.requireNonNull(task.getResult().getUser()).getUid();
                             database.getReference().child("Users").child(id).setValue(user);
-
                             Toast.makeText(SignUpActivity.this, "User created successfully", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(SignUpActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         });
-        binding.ap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(SignUpActivity.this,SignInActivity.class);
-                startActivity(intent);
-            }
+        binding.ap.setOnClickListener(v -> {
+            Intent intent=new Intent(SignUpActivity.this,SignInActivity.class);
+            startActivity(intent);
         });
     }
 }

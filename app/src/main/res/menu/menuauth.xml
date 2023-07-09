@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/gmailsignin"
+        android:title="SignIn with email"/>
+    <item
+        android:id="@+id/gmailsignup"
+        android:title="SignUp with email"/>
+
+</menu>

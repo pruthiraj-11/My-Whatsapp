@@ -22,41 +22,37 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
-    ArrayList<Users> list;
+    ArrayList<Users> list=new ArrayList<Users>();
     Context context;
-
     public UserAdapter(ArrayList<Users> list, Context context) {
         this.list = list;
         this.context = context;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.sample_user,parent,false);
-
         return new ViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Users users=list.get(position);
         Picasso.get().load(users.getProfilepic()).placeholder(R.mipmap.ic_launcher_round).into(holder.image);
         holder.username.setText(users.getUsername());
-        FirebaseDatabase.getInstance().getReference().child("chats").child(FirebaseAuth.getInstance().toString()+users.getUserId())
+        FirebaseDatabase.getInstance().getReference().child("Chats").child(FirebaseAuth.getInstance().toString()+users.getUserId())
                         .orderByChild("timestamp").limitToLast(1)
                         .addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if(snapshot.hasChildren()){
                                     for(DataSnapshot snapshot1:snapshot.getChildren()){
-                                        holder.lastmessage.setText(snapshot1.child("message").getValue(String.class).toString());
+                                        holder.lastmessage.setText(Objects.requireNonNull(snapshot1.child("message").getValue(String.class)).toString());
                                     }
                                 }
                             }
-
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
 

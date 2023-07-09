@@ -3,7 +3,9 @@ package com.example.whatsapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,33 +27,24 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     FirebaseAuth auth;
-
+    FirebaseDatabase database;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference myRef=database.getReference("message");
-        myRef.setValue("Hello World");
-        auth=FirebaseAuth.getInstance();
+        database=FirebaseDatabase.getInstance();
+
+        sharedPreferences=getSharedPreferences("dndmodeflag", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putBoolean("dndisenabled",false);
+        editor.apply();
 
         binding.viewPager.setAdapter(new FragmentsAdapter(getSupportFragmentManager()));
         binding.tablayout.setupWithViewPager(Objects.requireNonNull(binding.viewPager));
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String value=snapshot.getValue(String.class);
-                Toast.makeText(MainActivity.this, ""+value, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater=getMenuInflater();
@@ -74,6 +67,21 @@ public class MainActivity extends AppCompatActivity {
             case R.id.grouchat:
                 Intent i=new Intent(MainActivity.this,GroupChatActivity.class);
                 startActivity(i);
+                break;
+
+            case R.id.dnd:
+                sharedPreferences = getSharedPreferences("dndmodeflag",Context.MODE_PRIVATE);
+                boolean flag;
+                flag=sharedPreferences.getBoolean("dndisenabled",false);
+                if(flag==false){
+                    SharedPreferences.Editor editor=sharedPreferences.edit();
+                    editor.putBoolean("dndisenabled",true);
+                    editor.apply();
+                    database.goOffline();
+                }
+                else{
+                    database.goOnline();
+                }
                 break;
         }
         return true;

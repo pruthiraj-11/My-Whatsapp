@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class ChatAdapter extends RecyclerView.Adapter {
-    ArrayList<MessageModel> messagesModels;
+    ArrayList<MessageModel> messagesModels=new ArrayList<MessageModel>();
     Context context;
     String recId;
 
@@ -77,7 +77,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
                             public void onClick(DialogInterface dialog, int which) {
                                 FirebaseDatabase database=FirebaseDatabase.getInstance();
                                 String sender=FirebaseAuth.getInstance().getUid()+recId;
-                                database.getReference().child("chats").child(sender)
+                                database.getReference().child("Chats").child(sender)
                                         .child(messagesModel.getMessageId())
                                         .setValue(null);
                             }
