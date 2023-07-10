@@ -10,19 +10,18 @@ import android.view.ViewGroup;
 
 import com.example.whatsapp.R;
 import com.example.whatsapp.databinding.FragmentChatsBinding;
+import com.example.whatsapp.databinding.FragmentStatusBinding;
 
 public class Status extends Fragment {
 
-    FragmentChatsBinding binding;
+    FragmentStatusBinding binding;
 
-    public Status() {
-
-    }
+    public Status() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding=FragmentChatsBinding.inflate(inflater,container,false);
+        binding=FragmentStatusBinding.inflate(inflater,container,false);
 
 
         return binding.getRoot();
