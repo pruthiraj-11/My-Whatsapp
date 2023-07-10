@@ -4,9 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,7 +41,8 @@ public class SignInActivity extends AppCompatActivity {
         binding=ActivitySignInBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
-        Objects.requireNonNull(getSupportActionBar()).hide();
+
+//        Objects.requireNonNull(getSupportActionBar()).hide();
 
         AnimationDrawable animationDrawable = (AnimationDrawable)binding.signinlayout.getBackground();
         animationDrawable.setEnterFadeDuration(1500);
@@ -116,5 +121,20 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.signinmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.phonesignin:
+                Intent in=new Intent(getApplicationContext(),PhoneNumberAuthActivity.class);
+                startActivity(in);
+                break;
+        }
+        return true;
     }
 }

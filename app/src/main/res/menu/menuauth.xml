@@ -3,9 +3,9 @@
 
     <item
         android:id="@+id/gmailsignin"
-        android:title="SignIn with email"/>
+        android:title="Signin with email"/>
     <item
         android:id="@+id/gmailsignup"
-        android:title="SignUp with email"/>
+        android:title="Signup with email"/>
 
 </menu>

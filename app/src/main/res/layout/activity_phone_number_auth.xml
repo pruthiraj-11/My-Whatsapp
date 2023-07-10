@@ -31,19 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
 
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/country_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:ccp_autoDetectCountry="true"
-                app:ccp_defaultNameCode="IND"
-                app:ccp_showFlag="true"
-                app:ccp_showFullName="true"
-                app:ccp_showNameCode="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/phonefield"
-                app:layout_constraintStart_toStartOf="parent"></com.hbb20.CountryCodePicker>
-
             <EditText
                 android:id="@+id/phonefield"
                 android:layout_width="0dp"
@@ -59,8 +46,7 @@
                 android:tooltipText="Dont't enter country code"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/country_code"
-                app:layout_constraintTop_toTopOf="@+id/country_code" />
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText

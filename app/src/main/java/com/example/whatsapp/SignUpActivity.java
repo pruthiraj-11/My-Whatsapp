@@ -1,11 +1,17 @@
 package com.example.whatsapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -31,7 +37,8 @@ public class SignUpActivity extends AppCompatActivity {
         binding=ActivitySignUpBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
-        Objects.requireNonNull(getSupportActionBar()).hide();
+
+//        Objects.requireNonNull(getSupportActionBar()).hide();
 
         AnimationDrawable animationDrawable = (AnimationDrawable)binding.linearLayoutup.getBackground();
         animationDrawable.setEnterFadeDuration(1500);
@@ -65,5 +72,20 @@ public class SignUpActivity extends AppCompatActivity {
             Intent intent=new Intent(SignUpActivity.this,SignInActivity.class);
             startActivity(intent);
         });
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.signupmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.phonesignup:
+                Intent in=new Intent(getApplicationContext(),PhoneNumberAuthActivity.class);
+                startActivity(in);
+                break;
+        }
+        return true;
     }
 }
