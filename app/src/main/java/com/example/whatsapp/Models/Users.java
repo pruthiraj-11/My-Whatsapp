@@ -1,7 +1,7 @@
 package com.example.whatsapp.Models;
 
 public class Users {
-    String profilepic, username, mail,password,userId,lastmessage,status;
+    String profilepic, username, mail,password,userId,lastmessage,status,phonenumber;
 
     public Users(String profilepic, String username, String mail, String password, String userId, String lastmessage,String status) {
         this.profilepic = profilepic;
@@ -17,6 +17,15 @@ public class Users {
         this.username = username;
         this.mail = mail;
         this.password = password;
+    }
+    public Users(String phonenumber) {
+        this.phonenumber=phonenumber;
+    }
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getStatus() {

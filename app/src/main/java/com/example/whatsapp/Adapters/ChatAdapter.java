@@ -33,20 +33,19 @@ public class ChatAdapter extends RecyclerView.Adapter {
         this.context = context;
         this.recId = recId;
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         if(viewType==SENDER_VIEW_TYPE){
             view = LayoutInflater.from(context).inflate(R.layout.sample_sender, parent, false);
+            return new SenderViewHolder(view);
         }
         else{
             view = LayoutInflater.from(context).inflate(R.layout.sample_receiver, parent, false);
+            return new ReceiverViewHolder(view);
         }
-        return new SenderViewHolder(view);
     }
-
     @Override
     public int getItemViewType(int position) {
         if(messagesModels.get(position).getuId()
@@ -57,7 +56,6 @@ public class ChatAdapter extends RecyclerView.Adapter {
             return RECEIVER_VIEW_TYPE;
         }
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MessageModel messagesModel=messagesModels.get(position);
@@ -82,7 +80,6 @@ public class ChatAdapter extends RecyclerView.Adapter {
             ((ReceiverViewHolder) holder).receiverMsg.setText(messagesModel.getMessage());
         }
     }
-
     @Override
     public int getItemCount() {
         return messagesModels.size();
@@ -95,9 +92,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
             receiverMsg = itemView.findViewById(R.id.receiverText);
             receiverTime=itemView.findViewById(R.id.receiverTime);
         }
-
     }
-    @SuppressWarnings("CanBeFinal")
     public static class SenderViewHolder extends RecyclerView.ViewHolder{
         TextView senderMsg, senderTime;
         public SenderViewHolder(@NonNull View itemView) {

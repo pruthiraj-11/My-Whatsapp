@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         database=FirebaseDatabase.getInstance();
 
+        auth=FirebaseAuth.getInstance();
+
         sharedPreferences=getSharedPreferences("dndmodeflag", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putBoolean("dndisenabled",false);
