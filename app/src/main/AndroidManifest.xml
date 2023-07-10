@@ -46,6 +46,7 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
+            android:label="Settings"
             android:exported="false" />
         <activity
             android:name=".GroupChatActivity"

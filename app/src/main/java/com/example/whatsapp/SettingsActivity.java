@@ -48,7 +48,6 @@ public class SettingsActivity extends AppCompatActivity {
         binding=ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
         storage=FirebaseStorage.getInstance();
         auth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
