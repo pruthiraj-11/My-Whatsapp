@@ -25,6 +25,7 @@
             android:layout_gravity="center_vertical"
             android:padding="8dp"
             android:text="Camera"
+            android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -48,6 +49,7 @@
             android:layout_gravity="center_vertical"
             android:padding="8dp"
             android:text="Gallery"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
