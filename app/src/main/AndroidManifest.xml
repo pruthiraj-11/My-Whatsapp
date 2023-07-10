@@ -38,6 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".PhoneNumberAuthActivity"
+            android:label="Verify your phone number"
             android:exported="true" />
         <activity
             android:name=".BiometricAuthenticationActivity"
@@ -54,9 +55,11 @@
             android:exported="true" />
         <activity
             android:name=".SignInActivity"
+            android:label="Login"
             android:exported="true" />
         <activity
             android:name=".SignUpActivity"
+            android:label="Register"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
