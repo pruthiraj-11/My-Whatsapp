@@ -5,4 +5,5 @@
     <string name="chat_room">Chat Room</string>
     <string name="logout_menu">Logout</string>
     <string name="dnd_mode">DND Mode</string>
+    <string name="shortcut_main_short_label">Chats</string>
 </resources>

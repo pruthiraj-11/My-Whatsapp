@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="mainShortcut"
+        android:enabled="true"
+        android:shortcutShortLabel="@string/shortcut_main_short_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.whatsapp"
+            android:targetClass="com.example.whatsapp.MainActivity">
+        </intent>
+
+    </shortcut>
+</shortcuts>
