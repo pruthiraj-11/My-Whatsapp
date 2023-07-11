@@ -5,23 +5,15 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.widget.Toast;
-
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-
-import java.util.List;
 import java.util.Objects;
 
 public class SplashScreen extends AppCompatActivity {
@@ -33,9 +25,20 @@ public class SplashScreen extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        int PERMISSION_ALL = 1;
+        String[] PERMISSIONS = {
+                Manifest.permission.CAMERA,
+                android.Manifest.permission.READ_CONTACTS,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_PHONE_NUMBERS
+        };
+        if (!hasPermissions(this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
         SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
         boolean flag=sharedPreferences.getBoolean("switchstate",false);
-
         new Handler().postDelayed(() -> {
             if(flag){
                 startActivity(new Intent(SplashScreen.this,BiometricAuthenticationActivity.class));
@@ -46,32 +49,41 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         }, 5000);
-//        requestPermissions();
     }
-    private void requestPermissions() {
-        Dexter.withActivity(this)
-                .withPermissions(android.Manifest.permission.CAMERA,
-                        android.Manifest.permission.ACCESS_FINE_LOCATION,
-                        android.Manifest.permission.READ_CONTACTS, Manifest.permission.READ_EXTERNAL_STORAGE)
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
-                            Toast.makeText(getApplicationContext(), "All the permissions are granted", Toast.LENGTH_SHORT).show();
-                        }
-                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
-                            showSettingsDialog();
-                        }
-                    }
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
-                        permissionToken.continuePermissionRequest();
-                    }
-                }).withErrorListener(error -> {
-                    Toast.makeText(getApplicationContext(), "Error occurred! ", Toast.LENGTH_SHORT).show();
-                })
-                .onSameThread().check();
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
+//    private void requestPermissions() {
+//        Dexter.withActivity(this)
+//                .withPermissions(android.Manifest.permission.CAMERA,
+//                        android.Manifest.permission.ACCESS_FINE_LOCATION,
+//                        android.Manifest.permission.READ_CONTACTS, Manifest.permission.READ_EXTERNAL_STORAGE)
+//                .withListener(new MultiplePermissionsListener() {
+//                    @Override
+//                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+//                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+//                            Toast.makeText(getApplicationContext(), "All the permissions are granted", Toast.LENGTH_SHORT).show();
+//                        }
+//                        if (multiplePermissionsReport.isAnyPermissionPermanentlyDenied()) {
+//                            showSettingsDialog();
+//                        }
+//                    }
+//                    @Override
+//                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+//                        permissionToken.continuePermissionRequest();
+//                    }
+//                }).withErrorListener(error -> {
+//                    Toast.makeText(getApplicationContext(), "Error occurred! ", Toast.LENGTH_SHORT).show();
+//                })
+//                .onSameThread().check();
+//    }
     private void showSettingsDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
 
@@ -85,9 +97,7 @@ public class SplashScreen extends AppCompatActivity {
             intent.setData(uri);
             startActivityForResult(intent, 101);
         });
-        builder.setNegativeButton("Cancel", (dialog, which) -> {
-            dialog.cancel();
-        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
         builder.show();
     }
 }
