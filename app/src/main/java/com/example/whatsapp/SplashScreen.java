@@ -28,9 +28,9 @@ public class SplashScreen extends AppCompatActivity {
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {
                 Manifest.permission.CAMERA,
-                android.Manifest.permission.READ_CONTACTS,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.READ_PHONE_NUMBERS
         };

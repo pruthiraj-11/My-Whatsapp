@@ -42,8 +42,6 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
 
-//        Objects.requireNonNull(getSupportActionBar()).hide();
-
         AnimationDrawable animationDrawable = (AnimationDrawable)binding.signinlayout.getBackground();
         animationDrawable.setEnterFadeDuration(1500);
         animationDrawable.setExitFadeDuration(3000);
