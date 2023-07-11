@@ -19,10 +19,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.whatsapp.databinding.ActivityPhoneNumberAuthBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.hbb20.CountryCodePicker;
 
 public class PhoneNumberAuthActivity extends AppCompatActivity {
     ActivityPhoneNumberAuthBinding binding;
+    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,13 @@ public class PhoneNumberAuthActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
         }
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            startActivity(new Intent(getApplicationContext(),MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
+
         binding.countryCode.registerCarrierNumberEditText(binding.phonefield);
 
         binding.next.setOnClickListener(v -> {

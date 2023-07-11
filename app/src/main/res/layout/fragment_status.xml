@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mystatusadd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/statusthumbnail"
             android:layout_width="95dp"
-            android:layout_height="95dp"
+            android:layout_height="65dp"
             android:layout_marginTop="5dp"
             android:backgroundTint="#A51F1F"
             app:layout_constraintBottom_toBottomOf="parent"

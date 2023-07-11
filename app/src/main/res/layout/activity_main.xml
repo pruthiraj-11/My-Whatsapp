@@ -12,7 +12,7 @@
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/mywacolor"
         android:elevation="4dp"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/white"
