@@ -1,6 +1,7 @@
 package com.example.whatsapp;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,9 @@ public class OTPVerify extends AppCompatActivity {
         binding= ActivityOtpverifyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         phonenumber= getIntent().getStringExtra("mobile");
+        String name="Waiting to automatically detect an SMS sent to ";
+        String sourceString =name+"<b>"+phonenumber+"</b>";
+        binding.textView17.setText(Html.fromHtml(sourceString));
         mAuth=FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
         initiateotp();
