@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.whatsapp.Listeners.UsersListener;
 import com.example.whatsapp.Models.Users;
 import com.example.whatsapp.R;
 
@@ -16,10 +17,12 @@ import java.util.ArrayList;
 
 public class CallAdapter extends RecyclerView.Adapter<CallAdapter.ViewHolder> {
     private ArrayList<Users> list=new ArrayList<>();
-    public CallAdapter(ArrayList<Users> list) {
-        this.list = list;
-    }
+    private final UsersListener usersListener;
+    public CallAdapter(ArrayList<Users> list, UsersListener usersListener) {
 
+        this.list = list;
+        this.usersListener=usersListener;
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,7 +36,8 @@ public class CallAdapter extends RecyclerView.Adapter<CallAdapter.ViewHolder> {
         holder.userNameVideo.setText(users.getUsername());
         holder.dp.setText(users.getUsername().substring(0,1));
         holder.usermailVideo.setText(users.getMail());
-
+        holder.audioImg.setOnClickListener(v -> usersListener.initiateAudioCall(users));
+        holder.videoImg.setOnClickListener(v -> usersListener.initiateVideoCall(users));
     }
 
     @Override

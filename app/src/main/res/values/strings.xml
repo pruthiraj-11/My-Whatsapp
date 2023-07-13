@@ -6,4 +6,12 @@
     <string name="logout_menu">Logout</string>
     <string name="dnd_mode">DND Mode</string>
     <string name="shortcut_main_short_label">Chats</string>
+    <string name="username">Username</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="already_have_a_account">Already have a account</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="google">google</string>
+    <string name="facebook">facebook</string>
+    <string name="sign_up_with_phone">Sign up with phone</string>
 </resources>

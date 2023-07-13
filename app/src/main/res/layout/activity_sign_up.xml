@@ -22,7 +22,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            tools:ignore="ImageContrastCheck"
+            android:contentDescription="@string/app_name"
             tools:srcCompat="@drawable/whatsapp"
             />
 
@@ -35,7 +35,7 @@
             android:autofillHints=""
             android:background="@drawable/background_cred"
             android:ems="10"
-            android:hint="Username"
+            android:hint="@string/username"
             android:inputType="textPersonName"
             android:padding="15dp"
             android:textColor="#100606"
@@ -50,7 +50,7 @@
             android:autofillHints=""
             android:background="@drawable/background_cred"
             android:ems="10"
-            android:hint="E-mail"
+            android:hint="@string/e_mail"
             android:inputType="textEmailAddress"
             android:padding="15dp"
             android:textColor="#0B0A0A"
@@ -64,7 +64,7 @@
             android:autofillHints=""
             android:background="@drawable/background_cred"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="15dp"
             android:textColor="#040303"
@@ -79,7 +79,7 @@
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="Already have a account"
+            android:text="@string/already_have_a_account"
             android:textColor="#0B0808"
             android:textSize="14sp" />
 
@@ -93,7 +93,7 @@
             android:layout_weight="1"
             style="@style/Widget.Material3.Button.ElevatedButton"
             android:padding="15dp"
-            android:text="SIGN UP"
+            android:text="@string/sign_up"
             android:textColor="#6F59A9"
             android:textSize="16sp"
             android:textStyle="bold"/>
@@ -112,11 +112,12 @@
                 android:backgroundTint="#D3C4C4"
                 android:drawableLeft="@drawable/gicon"
                 android:padding="15dp"
-                android:text="google"
+                android:text="@string/google"
                 android:textColor="#0C0B0B"
                 android:textStyle="bold"
                 app:cornerRadius="5dp"
-                tools:ignore="VisualLintButtonSize" />
+                tools:ignore="VisualLintButtonSize"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/fbup"
@@ -128,9 +129,10 @@
                 android:backgroundTint="@color/fb_color"
                 android:drawableLeft="@drawable/fb"
                 android:padding="15dp"
-                android:text="facebook"
+                android:text="@string/facebook"
                 android:textStyle="bold"
-                app:cornerRadius="5dp" />
+                app:cornerRadius="5dp"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <TextView
@@ -140,7 +142,7 @@
             android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Sign up with phone"
+            android:text="@string/sign_up_with_phone"
             android:textColor="#040303" />
     </LinearLayout>
 

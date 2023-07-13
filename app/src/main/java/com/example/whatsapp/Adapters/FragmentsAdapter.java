@@ -38,13 +38,13 @@ public class FragmentsAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         String title=null;
         if(position==0){
-            title="CHATS";
+            title="Chats";
         }
         if(position==1){
-            title="STATUS";
+            title="Status";
         }
         if(position==2){
-            title="CALLS";
+            title="Calls";
         }
         return title;
     }

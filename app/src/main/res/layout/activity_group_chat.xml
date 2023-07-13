@@ -36,16 +36,15 @@
             android:inputType="textPersonName"
             android:padding="10dp" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/sendbtn"
             android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_height="45dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_weight="0"
-            android:background="#121111"
-            android:backgroundTint="#A59090"
-            app:srcCompat="@drawable/baseline_send_24" />
+            android:background="@drawable/send_btn"
+            android:src="@drawable/round_send_24" />
     </LinearLayout>
 
     <androidx.appcompat.widget.Toolbar
