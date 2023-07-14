@@ -100,7 +100,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==GALLERYPIC_ID){
+        if(requestCode==GALLERYPIC_ID&&resultCode!=RESULT_CANCELED){
             if (Objects.requireNonNull(data).getData()!=null) {
                 Uri sFile=data.getData();
                 binding.profileImage.setImageURI(sFile);
@@ -113,7 +113,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }));
             }
         }
-        if(requestCode==CAMPIC_ID){
+        if(requestCode==CAMPIC_ID&&resultCode!=RESULT_CANCELED){
             Bitmap photo = (Bitmap) Objects.requireNonNull(data).getExtras().get("data");
             binding.profileImage.setImageBitmap(photo);
         }
