@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.view.MotionEvent;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,7 @@ public class UserChats extends AppCompatActivity {
         binding = ActivityUserChatsBinding.inflate(getLayoutInflater());
         super.onCreate(savedInstanceState);
         setContentView(binding.getRoot());
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         database = FirebaseDatabase.getInstance();
