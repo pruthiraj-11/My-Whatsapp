@@ -14,6 +14,7 @@
         android:layout_height="56dp"
         android:background="@color/mywacolor"
         android:elevation="4dp"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         app:tabGravity="fill"
         app:tabIndicatorColor="@color/white"
         app:tabMaxWidth="0dp"
