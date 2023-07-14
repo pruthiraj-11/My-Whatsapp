@@ -2,6 +2,7 @@ package com.example.whatsapp.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         Users users=list.get(position);
         Picasso.get().load(users.getProfilepic()).placeholder(R.mipmap.ic_launcher_round).into(holder.image);
         holder.username.setText(users.getUsername());
-        FirebaseDatabase.getInstance().getReference().child("Chats").child(FirebaseAuth.getInstance().getCurrentUser().getUid()+users.getUserId())
+        FirebaseDatabase.getInstance().getReference().child("Chats").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()+users.getUserId())
                         .orderByChild("timestamp").limitToLast(1)
                         .addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -68,7 +69,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public int getItemCount() {
         return list.size();
     }
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         ImageView image;
         TextView lastmessage,username;
         public ViewHolder(@NonNull View itemView) {
@@ -76,6 +78,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             image=itemView.findViewById(R.id.profile_photo);
             lastmessage=itemView.findViewById(R.id.lastmessage);
             username=itemView.findViewById(R.id.username);
+            itemView.setOnCreateContextMenuListener(this);
+        }
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.add(getAbsoluteAdapterPosition(),101,0,"Archive");
+            menu.add(getAbsoluteAdapterPosition(),102,1,"Delete");
+        }
+        private void onLongClick() {
+            itemView.showContextMenu();
         }
     }
 }

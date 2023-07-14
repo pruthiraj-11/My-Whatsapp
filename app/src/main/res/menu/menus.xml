@@ -6,6 +6,9 @@
         android:id="@+id/settings"
         android:title="@string/settings_menu"/>
     <item
+        android:id="@+id/archivechats"
+        android:title="@string/archive"/>
+    <item
         android:id="@+id/grouchat"
         android:title="@string/chat_room"/>
     <item

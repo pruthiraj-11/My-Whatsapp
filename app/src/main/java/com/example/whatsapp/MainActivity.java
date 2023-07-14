@@ -83,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
                     database.goOnline();
                 }
                 break;
+                case R.id.archivechats:
+                    Intent intent1=new Intent(MainActivity.this, ArchiveChatsActivity.class);
+                    startActivity(intent1);
+                    break;
         }
         return true;
     }
