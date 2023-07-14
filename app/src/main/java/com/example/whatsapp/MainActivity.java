@@ -58,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.logout:
                 auth.signOut();
+                SharedPreferences sharedPreference=getSharedPreferences("save",MODE_PRIVATE);
+                SharedPreferences.Editor editors=sharedPreference.edit();
+                editors.putBoolean("value",false);
+                editors.apply();
                 Intent intent=new Intent(MainActivity.this,SignInActivity.class);
                 startActivity(intent);
                 break;
