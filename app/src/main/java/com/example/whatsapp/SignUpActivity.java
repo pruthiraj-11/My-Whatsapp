@@ -9,13 +9,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.whatsapp.Models.Users;
@@ -34,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity implements ConnectionRecei
     FirebaseDatabase database;
     ProgressDialog dialog;
     GoogleSignInClient googleSignInClient;
-    Button btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding=ActivitySignUpBinding.inflate(getLayoutInflater());
@@ -85,21 +79,10 @@ public class SignUpActivity extends AppCompatActivity implements ConnectionRecei
             Intent intent=new Intent(SignUpActivity.this,SignInActivity.class);
             startActivity(intent);
         });
-    }
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.signupmenu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.phonesignup:
-                Intent in=new Intent(getApplicationContext(),PhoneNumberAuthActivity.class);
-                startActivity(in);
-                break;
-        }
-        return true;
+        binding.phonesup.setOnClickListener(v -> {
+            Intent intent=new Intent(SignUpActivity.this,PhoneNumberAuthActivity.class);
+            startActivity(intent);
+        });
     }
     private void checkConnection() {
         IntentFilter intentFilter = new IntentFilter();
