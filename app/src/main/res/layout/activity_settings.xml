@@ -186,7 +186,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/lockswitch"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

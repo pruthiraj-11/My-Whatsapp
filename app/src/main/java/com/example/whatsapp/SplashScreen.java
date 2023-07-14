@@ -37,8 +37,8 @@ public class SplashScreen extends AppCompatActivity {
         if (!hasPermissions(this, PERMISSIONS)) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
         }
-        SharedPreferences sharedPreferences=getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-        boolean flag=sharedPreferences.getBoolean("switchstate",false);
+        SharedPreferences sharedPreferences=getSharedPreferences("save", Context.MODE_PRIVATE);
+        boolean flag=sharedPreferences.getBoolean("value",false);
         new Handler().postDelayed(() -> {
             if(flag){
                 startActivity(new Intent(SplashScreen.this,BiometricAuthenticationActivity.class));
