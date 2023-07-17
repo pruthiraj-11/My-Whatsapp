@@ -41,7 +41,6 @@ import java.util.Objects;
 
 public class UserChats extends AppCompatActivity {
     ActivityUserChatsBinding binding;
-
     FusedLocationProviderClient mFusedLocationClient;
     FirebaseDatabase database;
     FirebaseAuth auth;
@@ -53,7 +52,6 @@ public class UserChats extends AppCompatActivity {
         setContentView(binding.getRoot());
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         Objects.requireNonNull(getSupportActionBar()).hide();
-
         database = FirebaseDatabase.getInstance();
         auth=FirebaseAuth.getInstance();
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -69,10 +67,8 @@ public class UserChats extends AppCompatActivity {
         binding.chatrecyclerview.setAdapter(chatAdapter);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         binding.chatrecyclerview.setLayoutManager(linearLayoutManager);
-
         final String senderRoom=senderId+receiveId;
         final String receiverRoom=receiveId+senderId;
-
         database.getReference().child("Chats").child(senderRoom).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
