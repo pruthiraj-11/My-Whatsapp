@@ -7,8 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PhoneNumberAuthActivity">
-
-
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
@@ -38,37 +36,24 @@
         app:layout_constraintStart_toStartOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView15"></com.hbb20.CountryCodePicker>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/country_code"
-        app:layout_constraintStart_toStartOf="@+id/country_code"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Enter something"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/mywacolor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/country_code">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/phonefield"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="4dp"
-            android:autofillHints=""
-            android:background="@drawable/background_cred"
-            android:ems="10"
-            android:hint="phone number"
-            android:inputType="textPersonName"
-            android:padding="15dp"
-            android:textColor="#100606"
-            android:textColorHint="#4E4A4A"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView16"
@@ -80,7 +65,7 @@
         android:textColor="#131010"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/filledTextField" />
 
     <Button
         android:id="@+id/next"
