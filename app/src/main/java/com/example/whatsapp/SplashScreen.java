@@ -45,7 +45,7 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
             else {
-                startActivity(new Intent(SplashScreen.this,PhoneNumberAuthActivity.class));
+                startActivity(new Intent(SplashScreen.this, SignUpActivity.class));
                 finish();
             }
         }, 5000);
