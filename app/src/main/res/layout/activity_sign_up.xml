@@ -23,53 +23,63 @@
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/app_name"
-            tools:srcCompat="@drawable/whatsapp"
+            android:scaleType="fitXY"
+            tools:src="@drawable/whatsapp"
             />
 
-        <EditText
-            android:id="@+id/uname"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField74"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
-            android:autofillHints=""
-            android:background="@drawable/background_cred"
-            android:ems="10"
-            android:hint="@string/username"
-            android:inputType="textPersonName"
-            android:padding="15dp"
-            android:textColor="#100606"
-            android:textColorHint="#0B0A0A" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="Enter username"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/mywacolor">
 
-        <EditText
-            android:id="@+id/mailfield"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/uname"
+            android:inputType="textPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField67"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:autofillHints=""
-            android:background="@drawable/background_cred"
-            android:ems="10"
-            android:hint="@string/e_mail"
-            android:inputType="textEmailAddress"
-            android:padding="15dp"
-            android:textColor="#0B0A0A"
-            android:textColorHint="#0B0A0A" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="Enter E-mail"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/mywacolor">
 
-        <EditText
-            android:id="@+id/passfield"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mailfield"
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField70"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints=""
-            android:background="@drawable/background_cred"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="15dp"
-            android:textColor="#040303"
-            android:textColorHint="#0E0B0B"
-            tools:ignore="VisualLintTextFieldSize" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:hint="Enter Password"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/mywacolor">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passfield"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/ap"
@@ -136,6 +146,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/phonesup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
