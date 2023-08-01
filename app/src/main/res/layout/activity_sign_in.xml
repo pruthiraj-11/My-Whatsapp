@@ -23,8 +23,8 @@
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15dp"
-            tools:ignore="ImageContrastCheck"
-            tools:src="@drawable/whatsapp" />
+            android:scaleType="fitXY"
+            android:src="@drawable/whatsapp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/filledTextField91"

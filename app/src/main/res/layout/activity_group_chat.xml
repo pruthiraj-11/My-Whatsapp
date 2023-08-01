@@ -63,12 +63,12 @@
                 android:id="@+id/backarrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/baseline_arrow_back_24"
-                tools:ignore="ContentDescription,ImageContrastCheck" />
+                android:src="@drawable/baseline_arrow_back_24"
+                android:contentDescription="@string/app_name" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_photo"
@@ -104,8 +104,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@android:drawable/stat_sys_phone_call"
-                tools:ignore="ContentDescription" />
+                android:src="@android:drawable/stat_sys_phone_call"
+                android:contentDescription="@string/app_name" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -116,7 +116,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageView6"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@android:drawable/presence_video_away"
+                android:src="@android:drawable/presence_video_away"
+                android:contentDescription="@string/app_name"
                 app:tint="#D1CACA" />
 
             <ImageView
@@ -128,7 +129,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.5"
-                app:srcCompat="@android:drawable/ic_menu_add" />
+                android:src="@android:drawable/ic_menu_add"
+                android:contentDescription="@string/app_name"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
