@@ -2,9 +2,9 @@ package com.example.whatsapp.Models;
 
 public class MessageModel {
     String uId="",message="",messageId="";
-    Long timeStamp;
-
-    public MessageModel(String uId, String message, Long timeStamp) {
+//    Long timeStamp;
+    String timeStamp;
+    public MessageModel(String uId, String message, String timeStamp) {
         this.uId = uId;
         this.message = message;
         this.timeStamp = timeStamp;
@@ -40,11 +40,11 @@ public class MessageModel {
         this.message = message;
     }
 
-    public Long getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
-    public void setTimeStamp(Long timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
 }

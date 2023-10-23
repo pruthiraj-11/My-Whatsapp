@@ -1,6 +1,6 @@
 package com.example.whatsapp;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,7 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class GroupChatActivity extends AppCompatActivity {
@@ -48,7 +50,6 @@ public class GroupChatActivity extends AppCompatActivity {
         binding.chatrecyclerview.setLayoutManager(linearLayoutManager);
 
         database.getReference().child("Group Chat").addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 messageModels.clear();
@@ -62,14 +63,15 @@ public class GroupChatActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-
         binding.sendbtn.setOnClickListener(v -> {
             String message= binding.msgEnter.getText().toString();
             final MessageModel model=new MessageModel(senderId,message);
-            model.setTimeStamp(new Date().getTime());
+            Calendar calendar=Calendar.getInstance();
+            Date date=calendar.getTime();
+//            model.setTimeStamp(new Date().getTime());
+            model.setTimeStamp(date.toString());
             binding.msgEnter.setText("");
             database.getReference().child("Group Chat").push().setValue(model).addOnSuccessListener(unused -> database.getReference().child("Chats").push().setValue(model).addOnSuccessListener(unused1 -> {
-
             }));
 
         });

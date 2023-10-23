@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity implements ConnectionRecei
         dialog.setTitle("Creating Account");
         dialog.setMessage("We are creating your account");
         binding.sup.setOnClickListener(v -> {
-            if(binding.mailfield.getText().toString().isEmpty()&&binding.passfield.getText().toString().isEmpty()&&binding.uname.getText().toString().isEmpty()){
+            if(binding.mailfield.getText().toString().isEmpty()&&binding.passfield.getText().toString().isEmpty()&& Objects.requireNonNull(binding.uname.getText()).toString().isEmpty()){
                 binding.uname.setError("Can't be blank");
                 binding.mailfield.setError("Can't be blank");
                 binding.passfield.setError("Can't be blank");
@@ -58,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity implements ConnectionRecei
                         addOnCompleteListener(task -> {
                             dialog.dismiss();
                             if (task.isSuccessful()) {
-                                Users user=new Users(binding.uname.getText().toString(),email,pass);
+                                Users user=new Users(Objects.requireNonNull(binding.uname.getText()).toString(),email,pass);
                                 String id= Objects.requireNonNull(task.getResult().getUser()).getUid();
                                 database.getReference().child("Users").child(id).setValue(user);
                                 final Snackbar snackBar = Snackbar.make(findViewById(android.R.id.content),"User created",Snackbar.LENGTH_LONG);

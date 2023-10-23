@@ -75,9 +75,11 @@ public class ChatAdapter extends RecyclerView.Adapter {
 
         if(holder.getClass()==SenderViewHolder.class){
             ((SenderViewHolder) holder).senderMsg.setText(messagesModel.getMessage());
+//            ((SenderViewHolder) holder).senderTime.setText(messagesModel.getTimeStamp());
         }
         else{
             ((ReceiverViewHolder) holder).receiverMsg.setText(messagesModel.getMessage());
+//            ((ReceiverViewHolder) holder).receiverTime.setText(messagesModel.getTimeStamp());
         }
     }
     @Override

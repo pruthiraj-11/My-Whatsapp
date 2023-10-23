@@ -26,8 +26,6 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -87,7 +86,10 @@ public class UserChats extends AppCompatActivity {
         binding.sendbtn.setOnClickListener(v -> {
             String message= binding.msgEnter.getText().toString();
             final MessageModel model=new MessageModel(senderId,message);
-            model.setTimeStamp(new Date().getTime());
+//            model.setTimeStamp(new Date().getTime());
+            Calendar calendar=Calendar.getInstance();
+            Date date=calendar.getTime();
+            model.setTimeStamp(date.toString());
             binding.msgEnter.setText("");
             database.getReference().child("Chats").child(senderRoom).push().setValue(model).addOnSuccessListener(unused -> database.getReference().child("Chats").child(receiverRoom).push().setValue(model).addOnSuccessListener(unused1 -> {}));
         });
@@ -107,15 +109,12 @@ public class UserChats extends AppCompatActivity {
     private void getLastLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
-                mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        Location location = task.getResult();
-                        if (location == null) {
-                            requestNewLocationData();
-                        } else {
-                            binding.msgEnter.setText(location.getLatitude() +""+ location.getLongitude());
-                        }
+                mFusedLocationClient.getLastLocation().addOnCompleteListener(task -> {
+                    Location location = task.getResult();
+                    if (location == null) {
+                        requestNewLocationData();
+                    } else {
+                        binding.msgEnter.setText(location.getLatitude() +""+ location.getLongitude());
                     }
                 });
             } else {
@@ -137,11 +136,11 @@ public class UserChats extends AppCompatActivity {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
     }
-    private LocationCallback mLocationCallback = new LocationCallback() {
+    private final LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            binding.msgEnter.setText("Latitude:"+mLastLocation.getLatitude() +" Longitude:"+ mLastLocation.getLongitude());
+            binding.msgEnter.setText("Latitude:"+ Objects.requireNonNull(mLastLocation).getLatitude() +" Longitude:"+ mLastLocation.getLongitude());
         }
     };
     private boolean checkPermissions() {

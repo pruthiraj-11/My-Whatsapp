@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.jakewharton.processphoenix.ProcessPhoenix;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -60,6 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.apply();
                 binding.lockswitch.setChecked(false);
             }
+            ProcessPhoenix.triggerRebirth(getApplicationContext());
         });
         binding.backbutton.setOnClickListener(v -> {
             Intent intent=new Intent(getApplicationContext(),MainActivity.class);
@@ -114,7 +116,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
         if(requestCode==CAMPIC_ID&&resultCode!=RESULT_CANCELED){
-            Bitmap photo = (Bitmap) Objects.requireNonNull(data).getExtras().get("data");
+            Bitmap photo = (Bitmap) Objects.requireNonNull(Objects.requireNonNull(data).getExtras()).get("data");
             binding.profileImage.setImageBitmap(photo);
         }
     }
